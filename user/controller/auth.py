@@ -13,6 +13,7 @@ auth_controller = Blueprint('auth_controller', __name__)
 
 
 @auth_controller.route('/login', methods=['POST'])
+@cross_origin()
 def login():
     try:
         user_data = request.get_json()

@@ -3,7 +3,13 @@ import { Outlet } from 'react-router-dom'
 
 function AuthLayout() {
 	return (
-		<div className="hold-transition login-page">
+		<div className="" style={{
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'center',
+			alignItems: 'center',
+			height: '100vh'
+		}}>
 			<Outlet />
 		</div>
 	)

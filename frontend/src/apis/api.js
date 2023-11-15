@@ -1,7 +1,6 @@
 import axios from "axios";
+import { BASE_URL } from "../utils/urls";
 
-
-const BASE_URL = process.env.REACT_APP_API_URL;
 
 export const sendAuthRequest = (url, data) => {
 	return axios({

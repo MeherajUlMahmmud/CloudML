@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { loadStorage } from '../utils/persistLocalStorage'
 import { isAuthenticated, logout } from '../utils/utils'
-import Navbar from './navbar/Navbar';
+import Navbar from './Navbar';
 
 function AppLayout() {
 	var user = loadStorage("user");

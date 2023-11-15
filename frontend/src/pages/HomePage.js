@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import './HomePage.scss'
-import { sendGetRequest, sendPostRequest } from '../../apis/api'
+import { sendGetRequest, sendPostRequest } from '../apis/api'
 import { useOutletContext } from 'react-router-dom'
-import { formatDateTime, logout } from '../../utils/utils'
-import TransparentModal from '../../components/transparentModal/TransparentModal'
+import { formatDateTime, logout } from '../utils/utils'
+import TransparentModal from '../components/TransparentModal'
 
 function HomePage() {
 	const [projects, setProjects] = useState([])
@@ -44,7 +43,7 @@ function HomePage() {
 		<>
 			<div className='pageContainer'>
 				<div className='pageTitle'>
-					<span className='title'>{user.username}'s Projects</span>
+					<span className='title'>{user?.username}'s Projects</span>
 					<button
 						className='btn btn-primary'
 						onClick={() => setIsCreateModalOpen(true)}

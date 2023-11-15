@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/homePage/HomePage";
+import HomePage from "./pages/HomePage";
 import AppLayout from "./components/AppLayout";
 import LogoutPage from "./pages/auth/LogoutPage";
 import LoginPage from "./pages/auth/LoginPage";
 import AuthLayout from "./components/AuthLayout";
-import ProjectDetailsPage from "./pages/projectDetailsPage/ProjectDetailsPage";
-import DatasetDetailsPage from "./pages/datasetDetailsPage/DatasetDetailsPage";
-import ModelDetailsPage from "./pages/modelDetailsPage/ModelDetailsPage";
+// import ProjectDetailsPage from "./pages/ProjectDetailsPage";
+// import DatasetDetailsPage from "./pages/DatasetDetailsPage";
+// import ModelDetailsPage from "./pages/ModelDetailsPage";
 
 function App() {
   return (
@@ -14,9 +14,9 @@ function App() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/project/:id" element={<ProjectDetailsPage />} />
+          {/* <Route path="/project/:id" element={<ProjectDetailsPage />} />
           <Route path="/project/:id/dataset/:id" element={<DatasetDetailsPage />} />
-          <Route path="/project/:id/dataset/:id/trained-model/:id" element={<ModelDetailsPage />} />
+          <Route path="/project/:id/dataset/:id/trained-model/:id" element={<ModelDetailsPage />} /> */}
         </Route>
         <Route path="/auth" element={<AuthLayout />} >
           <Route path="/auth/login" element={<LoginPage />} />

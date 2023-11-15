@@ -1,19 +1,16 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 from pymongo import MongoClient
-import hashlib
-from flask import Flask, request, jsonify
+from flask import Flask
 from config import JWT_SECRET_KEY, MONGO_URI, UPLOAD_FOLDER
-from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
+from flask_jwt_extended import JWTManager
 import datetime
-import hashlib
-import urllib
 
 from user.controller.auth import auth_controller
 from user.controller.user import user_controller
 
 app = Flask(__name__)
-cors = CORS(app)
+CORS(app, support_credentials=True, resources={r"/api/*": {"origins": "*"}})
 jwt = JWTManager(app)
 
 app.config['CORS_HEADERS'] = 'Content-Type'
