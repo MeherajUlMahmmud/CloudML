@@ -10,7 +10,7 @@ function LogoutPage() {
 	}, [])
 
 	return (
-		<div>
+		<div className='h-100 d-flex justify-content-center align-items-center'>
 			<p>
 				Redirecting to login page...
 			</p>
