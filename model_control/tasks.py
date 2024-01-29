@@ -58,7 +58,7 @@ def preprocess_and_train_model(train_model_instance_id):
         logger.info('Creation of the directory failed for encoded dataset')
 
     # save all the plots
-    plots = save_plots(encoded_dataframe, columns, train_model_instance)
+    plots = save_plots(dataframe, columns, train_model_instance)
 
     target_column = [column.name for column in columns if column.is_target][0]
     X_data = encoded_dataframe.drop(columns=target_column)

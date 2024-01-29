@@ -46,10 +46,12 @@ class ColumnModel(BaseModel):
     encoding_type = models.CharField(
         max_length=100, null=True, blank=True,
         choices=ColumnEncodingTypeChoices.choices,
+        default=ColumnEncodingTypeChoices.ONE_HOT.value,
     )
     scaling_type = models.CharField(
         max_length=100, null=True, blank=True,
         choices=ColumnScalingTypeChoices.choices,
+        default=ColumnScalingTypeChoices.STANDARD.value,
     )
     is_numeric = models.BooleanField(default=False)
     is_feature = models.BooleanField(default=False)

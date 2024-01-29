@@ -70,6 +70,9 @@ def save_plots(df, columns, train_model_instance):
     # Create the directory if it doesn't exist
     os.makedirs(plots_directory, exist_ok=True)
 
+    print(columns)
+    print(df.columns)
+    print(df.shape)
     plots = {}
     for column in columns:
         plt.figure()
@@ -91,26 +94,23 @@ def save_plots(df, columns, train_model_instance):
         plots[column.name] = f'{plots_directory}/{column.name}.png'
         plt.close()
 
-    for i in range(len(columns)):
+    target_column = columns.get(is_target=True)
+    feature_columns = columns.filter(is_feature=True)
 
-        if not columns[i].is_feature and not columns[i].is_target:
-            continue
-
-        if columns[i].is_target:
-
-            for j in range(len(columns)):
-                if not columns[j].is_feature:
-                    continue
-                plt.figure()
-                plt.title(f'{columns[i].name} vs {columns[j].name}')
-                plt.xlabel(columns[j].name)
-                plt.ylabel(columns[i].name)
-                plt.scatter(df[columns[j].name], df[columns[i].name], alpha=0.5, label='x', color='blue',
-                            edgecolor='black')
-                plt.savefig(f'{plots_directory}/{columns[i].name} vs {columns[j].name}.png')
-                plots[
-                    f'{columns[i].name} vs {columns[j].name}'] = f'{plots_directory}/{columns[i].name} vs {columns[j].name}.png'
-                plt.close()
+    if target_column:
+        print(target_column.name)
+        for i in range(len(feature_columns)):
+            print(feature_columns[i].name)
+            plt.figure()
+            plt.title(f'{feature_columns[i].name} vs {target_column.name}')
+            plt.xlabel(target_column.name)
+            plt.ylabel(feature_columns[i].name)
+            plt.scatter(df[target_column.name], df[feature_columns[i].name], alpha=0.5, label='x', color='blue',
+                        edgecolor='black')
+            plt.savefig(f'{plots_directory}/{feature_columns[i].name} vs {target_column.name}.png')
+            plots[
+                f'{feature_columns[i].name} vs {target_column.name}'] = f'{plots_directory}/{feature_columns[i].name} vs {target_column.name}.png'
+            plt.close()
 
     correlation_matrix = df.corr()
     plt.figure(figsize=(12, 9))
