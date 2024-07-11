@@ -8,10 +8,10 @@ from .models import UserModel
 @admin.register(UserModel)
 class UserModelAdmin(ImportExportModelAdmin, RawIdFieldsAdmin):
     list_display = (
-        'email', 'first_name', 'last_name', 'country', 'auth_provider', 'is_staff', 'is_admin', 'is_superuser',
+        'email', 'first_name', 'last_name', 'country', 'is_staff', 'is_admin', 'is_superuser',
     )
     list_filter = (
-        'country', 'auth_provider', 'is_staff', 'is_admin', 'is_superuser',
+        'country', 'is_staff', 'is_admin', 'is_superuser',
     )
     search_fields = (
         'email',
@@ -24,7 +24,7 @@ class UserModelAdmin(ImportExportModelAdmin, RawIdFieldsAdmin):
     fieldsets = (
         (None, {'fields': (
             'email', 'first_name', 'last_name',
-            'profile_picture', 'phone_number', 'country', 'auth_provider',
+            'profile_picture', 'phone_number', 'country',
             'otp', 'otp_expiry',
             'password', 'reset_password_token', 'reset_password_token_expiry',
             'groups', 'user_permissions',

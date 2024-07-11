@@ -36,7 +36,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/logs/', LogAPIView.as_view(), name='log-api'),
     path('api/', include('user_control.urls')),
-    path('', include('model_control.urls')),
+    # path('', include('model_control.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.DATA_ROOT)

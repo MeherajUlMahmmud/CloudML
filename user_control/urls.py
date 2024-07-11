@@ -1,14 +1,12 @@
-from django.urls import path, include
-from rest_framework import routers
+from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from user_control.views.auth import (
     LoginAPIView, LogoutAPIView, PasswordChangeAPIView, PasswordResetAPIView, RegisterAPIView,
-    RequestPasswordResetAPIView, google_login,
+    RequestPasswordResetAPIView,
 )
 from user_control.views.user import (
     GetUserListAPIView, CreateUserAPIView, GetUserDetailsAPIView, UpdateUserDetailsAPIView, GetUserProfileAPIView,
-    UpdateProfilePictureAPIView,
 )
 
 urlpatterns = [

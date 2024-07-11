@@ -42,7 +42,7 @@ CORS_ALLOWED_ORIGINS = [
 INSTALLED_APPS = [
     'common.apps.CommonConfig',
     'user_control.apps.UserControlConfig',
-    'model_control.apps.ModelControlConfig',
+    # 'model_control.apps.ModelControlConfig',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -105,46 +105,47 @@ WSGI_APPLICATION = 'base.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+DB_ENGINE = config('DB_ENGINE', default='django.db.backends.sqlite3')
+
+# DEV_DB_NAME = config('DEV_DB_NAME', default='')
+# DEV_DB_USER = config('DEV_DB_USER', default='')
+# DEV_DB_PASSWORD = config('DEV_DB_PASSWORD', default='')
+# DEV_DB_HOST = config('DEV_DB_HOST', default='')
+# DEV_DB_PORT = config('DEV_DB_PORT', default='')
+#
+# TEST_DB_NAME = config('TEST_DB_NAME', default='')
+# TEST_DB_USER = config('TEST_DB_USER', default='')
+# TEST_DB_PASSWORD = config('TEST_DB_PASSWORD', default='')
+# TEST_DB_HOST = config('TEST_DB_HOST', default='')
+# TEST_DB_PORT = config('TEST_DB_PORT', default='')
+#
+# PROD_DB_NAME = config('PROD_DB_NAME', default='')
+# PROD_DB_USER = config('PROD_DB_USER', default='')
+# PROD_DB_PASSWORD = config('PROD_DB_PASSWORD', default='')
+# PROD_DB_HOST = config('PROD_DB_HOST', default='')
+# PROD_DB_PORT = config('PROD_DB_PORT', default='')
+#
+# DB_NAME = DEV_DB_NAME if ENV == 'development' else TEST_DB_NAME if ENV == 'test' else PROD_DB_NAME
+# DB_USER = DEV_DB_USER if ENV == 'development' else TEST_DB_USER if ENV == 'test' else PROD_DB_USER
+# DB_PASSWORD = DEV_DB_PASSWORD if ENV == 'development' else TEST_DB_PASSWORD if ENV == 'test' else PROD_DB_PASSWORD
+# DB_HOST = DEV_DB_HOST if ENV == 'development' else TEST_DB_HOST if ENV == 'test' else PROD_DB_HOST
+# DB_PORT = DEV_DB_PORT if ENV == 'development' else TEST_DB_PORT if ENV == 'test' else PROD_DB_PORT
+#
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': DB_ENGINE,
+#         'NAME': DB_NAME,
+#         'USER': DB_USER,
+#         'PASSWORD': DB_PASSWORD,
+#         'HOST': DB_HOST,
+#         'PORT': DB_PORT,
 #     }
 # }
-DB_ENGINE = config('DB_ENGINE')
-
-DEV_DB_NAME = config('DEV_DB_NAME', default='')
-DEV_DB_USER = config('DEV_DB_USER', default='')
-DEV_DB_PASSWORD = config('DEV_DB_PASSWORD', default='')
-DEV_DB_HOST = config('DEV_DB_HOST', default='')
-DEV_DB_PORT = config('DEV_DB_PORT', default='')
-
-TEST_DB_NAME = config('TEST_DB_NAME', default='')
-TEST_DB_USER = config('TEST_DB_USER', default='')
-TEST_DB_PASSWORD = config('TEST_DB_PASSWORD', default='')
-TEST_DB_HOST = config('TEST_DB_HOST', default='')
-TEST_DB_PORT = config('TEST_DB_PORT', default='')
-
-PROD_DB_NAME = config('PROD_DB_NAME', default='')
-PROD_DB_USER = config('PROD_DB_USER', default='')
-PROD_DB_PASSWORD = config('PROD_DB_PASSWORD', default='')
-PROD_DB_HOST = config('PROD_DB_HOST', default='')
-PROD_DB_PORT = config('PROD_DB_PORT', default='')
-
-DB_NAME = DEV_DB_NAME if ENV == 'development' else TEST_DB_NAME if ENV == 'test' else PROD_DB_NAME
-DB_USER = DEV_DB_USER if ENV == 'development' else TEST_DB_USER if ENV == 'test' else PROD_DB_USER
-DB_PASSWORD = DEV_DB_PASSWORD if ENV == 'development' else TEST_DB_PASSWORD if ENV == 'test' else PROD_DB_PASSWORD
-DB_HOST = DEV_DB_HOST if ENV == 'development' else TEST_DB_HOST if ENV == 'test' else PROD_DB_HOST
-DB_PORT = DEV_DB_PORT if ENV == 'development' else TEST_DB_PORT if ENV == 'test' else PROD_DB_PORT
 
 DATABASES = {
     'default': {
         'ENGINE': DB_ENGINE,
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT,
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
