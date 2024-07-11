@@ -1,6 +1,6 @@
-export const loadLocalStorage = (value) => {
+export const loadSessionStorage = (value) => {
 	try {
-		const serializedState = window.localStorage.getItem(value);
+		const serializedState = window.sessionStorage.getItem(value);
 
 		if (
 			!serializedState ||
@@ -15,18 +15,18 @@ export const loadLocalStorage = (value) => {
 	}
 };
 
-export const saveLocalStorage = (name, value) => {
+export const saveSessionStorage = (name, value) => {
 	try {
 		const serializedState = JSON.stringify(value);
-		window.localStorage.setItem(name, serializedState);
+		window.sessionStorage.setItem(name, serializedState);
 	} catch (err) {
 		// console.log(err);
 	}
 };
 
-export const deleteLocalStorage = (value) => {
+export const deleteSessionStorage = (value) => {
 	try {
-		window.localStorage.removeItem(value);
+		window.sessionStorage.removeItem(value);
 	} catch (err) {
 		// console.log(err);
 	}

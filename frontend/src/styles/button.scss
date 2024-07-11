@@ -1,0 +1,87 @@
+$primary-color: #031a45;
+$secondary-color: #01ff86;
+$gradient-start: #031a45;
+$gradient-end: #01ff86;
+
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 45px;
+	gap: 0.5rem;
+	padding: 15px 20px;
+	border: none;
+	border-radius: 0.3rem;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.3s;
+	background-color: $primary-color;
+	white-space: nowrap;
+
+	@media screen and (max-width: 768px) {
+		padding: 10px 20px;
+	}
+
+	@media screen and (max-width: 480px) {
+		padding: 10px;
+		font-size: 0.8rem;
+		font-weight: 500;
+	}
+
+	&:hover {
+		background-color: $secondary-color;
+		color: $primary-color;
+	}
+
+	&.secondary {
+		background-color: $secondary-color;
+		color: $primary-color;
+
+		&:hover {
+			background-color: $primary-color;
+			color: #fff;
+		}
+	}
+
+	&.danger {
+		background-color: #ff0000;
+		color: #fff;
+	}
+
+	&.disabled {
+		background-color: #ccc;
+		cursor: not-allowed;
+		color: #000;
+	}
+
+	&.other {
+		background-color: #f4f6fb;
+		color: $primary-color;
+	}
+
+	&.small {
+		padding: 10px 20px;
+
+		@media screen and (max-width: 768px) {
+			padding: 5px 10px;
+			font-size: 0.8rem;
+		}
+	}
+
+	&.modalClose {
+		position: absolute;
+		top: -30px;
+		right: -30px;
+		height: 40px;
+		width: 40px;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #ff0000;
+		color: #fff;
+		cursor: pointer;
+	}
+}

@@ -44,7 +44,7 @@ function HomePage() {
 		<>
 			<div className='pageContainer'>
 				<div className='pageTitle'>
-					<span className='title'>{user.username}'s Projects</span>
+					<span className='title'>{user?.first_name}'s Projects</span>
 					<button
 						className='btn btn-primary'
 						onClick={() => setIsCreateModalOpen(true)}

@@ -1,0 +1,134 @@
+.authContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: calc(100vh - 80px);
+	width: 100%;
+
+	@media screen and (max-width: 768px) {
+		height: 100%;
+		padding: 5rem 0;
+	}
+
+	.loginPage,
+	.signUpPage,
+	.logoutPage,
+	.forgotPasswordPage {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		padding: 10px;
+		width: 100%;
+
+		.headerSection {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+			text-align: center;
+
+			@media screen and (max-width: 768px) {
+				gap: 0.5rem;
+			}
+
+			h1 {
+				@media screen and (max-width: 768px) {
+					font-size: 1.5rem;
+				}
+			}
+
+			h3 {
+				@media screen and (max-width: 768px) {
+					font-size: 1rem;
+				}
+			}
+		}
+
+		.loginForm {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+			width: 400px;
+			// border: 1px solid red;
+
+			@media screen and (max-width: 980px) {
+				width: 60%;
+				// border: 1px solid yellow;
+			}
+
+			@media screen and (max-width: 768px) {
+				width: 100%;
+				// border: 1px solid purple;
+			}
+
+			.inputField {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 80%;
+				gap: 0.5rem;
+
+				.input {
+					padding: 1rem 1rem;
+					border-radius: 0.5rem;
+					border: 1px solid #ccc;
+					width: 100%;
+				}
+			}
+
+			.actionsSection {
+				display: flex;
+				gap: 1rem;
+			}
+		}
+
+		.actionsSection {
+			display: flex;
+			gap: 1rem;
+		}
+
+		.socialAuthSection {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+
+			.socialAuthHeader {
+				font-size: 1rem;
+				font-weight: bold;
+			}
+
+			.socialAuthBtnSection {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+
+				.socialAuthBtn {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 0.5rem;
+					height: 40px;
+					padding: 5px 10px;
+					border-radius: 0.5rem;
+					border: 1px solid #ccc;
+
+					&:hover {
+						background-color: #f0f0f0;
+					}
+
+					img {
+						width: 100%;
+						height: 100%;
+					}
+
+					p {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
+}

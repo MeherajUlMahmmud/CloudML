@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { loadStorage } from '../utils/persistLocalStorage'
+import { loadLocalStorage } from '../utils/persistLocalStorage'
 import { isAuthenticated, logout } from '../utils/utils'
 import Navbar from './navbar/Navbar';
 
 function AppLayout() {
-	var user = loadStorage("user");
-	var tokens = loadStorage("tokens");
+	var user = loadLocalStorage("user");
+	var tokens = loadLocalStorage("tokens");
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		user = loadStorage("user");
-		tokens = loadStorage("tokens");
+		user = loadLocalStorage("user");
+		tokens = loadLocalStorage("tokens");
 		if (!isAuthenticated(user, tokens)) {
 			console.log("User not authenticated");
 			const currentUrl = window.location.pathname;

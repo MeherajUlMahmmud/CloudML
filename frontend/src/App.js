@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import HomePage from "./pages/homePage/HomePage";
 import AppLayout from "./components/AppLayout";
 import LogoutPage from "./pages/auth/LogoutPage";

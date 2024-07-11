@@ -1,4 +1,4 @@
-import { delStorage } from "./persistLocalStorage";
+import { deleteLocalStorage } from "./persistLocalStorage";
 
 export const capitalize = (str) => {
 	return str.charAt(0).toUpperCase() + str.slice(1);
@@ -40,8 +40,8 @@ export const notFound = (error) => {
 };
 
 export const logout = (navigate, currentUrl) => {
-	delStorage("user");
-	delStorage("tokens");
+	deleteLocalStorage("user");
+	deleteLocalStorage("tokens");
 	// navigate("/auth/login" + currentUrl ? `?next=${currentUrl}` : "");
 	navigate("/auth/login");
 };

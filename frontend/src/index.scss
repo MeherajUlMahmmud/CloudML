@@ -1,10 +1,19 @@
+$primary-color: #031a45;
+$secondary-color: #01ff86;
+$gradient-start: #031a45;
+$gradient-end: #01ff86;
+
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	font-family: "Rubik", "Bebas Neue", sans-serif;
+
+	scrollbar-width: thin;
 }
 
 body {
+	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
 		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
 		"Helvetica Neue", sans-serif;
@@ -17,16 +26,13 @@ code {
 		monospace;
 }
 
-.pageContainer {
-	display: flex;
-	margin: 0 auto;
-	flex-direction: column;
-	/* align-items: center; */
-	/* justify-content: center; */
-	padding: 0 1rem;
-	width: 100%;
-	max-width: 1200px;
-	// background-color: #f9fafb;
+.pointer {
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
 .backLink {
@@ -53,11 +59,6 @@ code {
 	gap: 1rem;
 }
 
-a {
-	color: #50168d;
-	text-decoration: none;
-}
-
 hr {
 	margin: 10px 0;
 }
@@ -73,23 +74,182 @@ input[type="checkbox"] {
 	margin-right: 0.5rem;
 }
 
-.btn {
-	display: inline-block;
-	padding: 0.5rem 1rem;
-	border-radius: 0.25rem;
-	border: 1px solid #ccc;
-	background-color: #fff;
-	cursor: pointer;
+.maxWidth {
+	display: flex;
+	margin: 0 auto;
+	flex-direction: column;
+	/* align-items: center; */
+	/* justify-content: center; */
+	padding: 0 1rem;
+	width: 100%;
+	max-width: 1200px;
+	// background-color: #f9fafb;
 }
 
-.btn-primary {
-	color: #fff;
-	background-color: #1a73e8;
-	border-color: #1a73e8;
+.modalContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	// background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(55, 0, 60, 0.9);
+	z-index: 1000;
+	overflow-y: scroll;
+
+	.modalContent {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 40%;
+		max-height: 90%;
+		height: fit-content;
+		background-color: #fff;
+		padding: 10px;
+		border-radius: 0.5rem;
+		box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+		position: relative;
+
+		@media screen and (max-width: 1024px) {
+			width: 70%;
+		}
+
+		@media screen and (max-width: 768px) {
+			width: 85%;
+			padding: 5px;
+		}
+
+		.modalHeader {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			margin-bottom: 20px;
+
+			@media screen and (max-width: 768px) {
+				margin-bottom: 10px;
+			}
+
+			@media screen and (max-width: 480px) {
+				margin-bottom: 10px;
+			}
+
+			.modalTitle {
+				width: 100%;
+				text-align: center;
+				font-size: 1rem;
+				font-weight: bold;
+			}
+		}
+
+		.modalBody {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			gap: 5px;
+			overflow: auto;
+
+			// hide the scrollbar
+			-ms-overflow-style: none; /* IE and Edge */
+			scrollbar-width: none; /* Firefox */
+
+			.modalInput {
+				display: flex;
+				flex-direction: column;
+				gap: 5px;
+
+				label {
+					font-weight: bold;
+
+					@media screen and (max-width: 480px) {
+						font-size: 0.8rem;
+					}
+				}
+
+				input {
+					padding: 5px;
+					border-radius: 0.5rem;
+					outline: none;
+					border: none;
+					font-size: 1rem;
+					font-weight: bolder;
+					color: $primary-color;
+					margin-top: 5px;
+					border-bottom: 1px solid $primary-color;
+				}
+			}
+		}
+
+		.modalActions {
+			display: flex;
+			gap: 10px;
+			margin-top: 20px;
+		}
+	}
 }
 
-.btn-danger {
-	color: #fff;
-	background-color: #d32f2f;
-	border-color: #d32f2f;
+.loading-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 30vh;
+
+	.loading-spinner {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 20px;
+
+		.loading-spinner-item {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background-color: #007bff; /* or any other color you prefer */
+			animation: loading-animation 1s infinite ease-in-out;
+			margin: 0 5px;
+		}
+	}
+
+	.loading-text {
+		text-align: center;
+		color: #333;
+		font-size: 16px;
+	}
+
+	@keyframes loading-animation {
+		0% {
+			transform: scale(0);
+			opacity: 0.5;
+		}
+		50% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		100% {
+			transform: scale(0);
+			opacity: 0.5;
+		}
+	}
+}
+
+.errorMessageContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin: 10px 0;
+
+	.errorMessage {
+		color: white;
+		font-size: 1rem;
+		padding: 10px;
+		background-color: rgb(204, 92, 92);
+		border-radius: 0.3rem;
+	}
 }

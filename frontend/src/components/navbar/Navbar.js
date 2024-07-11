@@ -11,7 +11,7 @@ function Navbar({ user }) {
 					</div>
 				</div>
 				<div className='navbar-right'>
-					<h3>{user?.username}</h3>
+					<h3>{user?.first_name} {user?.last_name}</h3>
 				</div>
 			</div>
 		</div>
