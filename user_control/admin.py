@@ -8,24 +8,41 @@ from .models import UserModel
 @admin.register(UserModel)
 class UserModelAdmin(ImportExportModelAdmin, RawIdFieldsAdmin):
     list_display = (
-        'username',
-        'is_admin', 'is_staff', 'is_superuser',
+        'email', 'first_name', 'last_name', 'country', 'auth_provider', 'is_staff', 'is_admin', 'is_superuser',
     )
-    list_filter = ('is_admin', 'is_staff', 'is_superuser', 'is_active', 'is_deleted')
-    search_fields = ('username',)
+    list_filter = (
+        'country', 'auth_provider', 'is_staff', 'is_admin', 'is_superuser',
+    )
+    search_fields = (
+        'email',
+    )
     readonly_fields = (
         'password',
-        'created_at', 'updated_at',
+        'reset_password_token',
+        'reset_password_token_expiry',
     )
     fieldsets = (
         (None, {'fields': (
-            'username',
-            'password',
+            'email', 'first_name', 'last_name',
+            'profile_picture', 'phone_number', 'country', 'auth_provider',
+            'otp', 'otp_expiry',
+            'password', 'reset_password_token', 'reset_password_token_expiry',
+            'groups', 'user_permissions',
         )}),
-        ('Permissions', {'fields': ('is_admin', 'is_staff', 'is_superuser',)}),
-        ('Dates', {'fields': ('created_at', 'updated_at')}),
+        ('Permissions', {'fields': (
+            'is_staff', 'is_admin', 'is_superuser',
+        )}),
+        ('Status', {'fields': ('is_active', 'is_deleted')}),
+        ('History', {'fields': (
+            'created_at', 'updated_at', 'created_by', 'updated_by',
+        )}),
     )
-    add_fieldsets = (
-        (None, {'fields': ('username', 'password1', 'password2')}),
-        ('Permissions', {'fields': ('is_admin', 'is_staff', 'is_superuser',)}),
-    )
+
+    actions = ['reset_password']
+
+    def reset_password(self, request, queryset):
+        for user in queryset:
+            user.reset_password()
+        self.message_user(request, 'Password reset successfully')
+
+    reset_password.short_description = 'Reset Password'

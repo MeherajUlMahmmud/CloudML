@@ -1,5 +1,11 @@
 from django.db import models
 
+YesNoChoices = [
+    (None, 'All'),
+    (True, 'Yes'),
+    (False, 'No'),
+]
+
 
 class ColumnEncodingTypeChoices(models.TextChoices):
     ONE_HOT = 'ONE_HOT', 'One Hot'
@@ -27,7 +33,6 @@ class TrainModelTypeChoices(models.TextChoices):
     K_NEAREST_NEIGHBORS = 'K_NEAREST_NEIGHBORS', 'K Nearest Neighbors'
     NAIVE_BAYES = 'NAIVE_BAYES', 'Naive Bayes'
     K_MEANS = 'K_MEANS', 'K Means'
-
 
 # class ModelDefaultHyperParameterChoices(models.TextChoices):
 #     LINEAR_REGRESSION = 'LINEAR_REGRESSION', {
