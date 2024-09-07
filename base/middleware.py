@@ -1,9 +1,14 @@
-from common.models import RequestLog
-from django.utils.deprecation import MiddlewareMixin
+import logging
 import uuid
 from threading import local
 
+from django.utils.deprecation import MiddlewareMixin
+
+from common.models import RequestLog
+
 _local = local()
+
+logger = logging.getLogger(__name__)
 
 
 class TraceIDMiddleware:
@@ -30,16 +35,26 @@ class RequestLogMiddleware(MiddlewareMixin):
         else:
             user = None
 
-        RequestLog.objects.create(
-            user=user,
-            ip_address=self.get_client_ip(request),
-            endpoint=request.path,
-            status_code=response.status_code,
-            response=response.content.decode('utf-8')
-        )
+        if str(request.path).startswith('/admin'):
+            return response
+        elif str(request.path).startswith('/favicon.ico'):
+            return response
+
+        try:
+            RequestLog.objects.create(
+                user=user,
+                ip_address=self.get_client_ip(request),
+                endpoint=request.path,
+                status_code=response.status_code,
+                response=response.content.decode('utf-8')
+            )
+        except Exception as e:
+            logger.error(f'Exception: {e}')
+            logger.info('Failed to create request log')
         return response
 
-    def get_client_ip(self, request):
+    @staticmethod
+    def get_client_ip(request):
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
             ip = x_forwarded_for.split(',')[0]
